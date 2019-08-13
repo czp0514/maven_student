@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.StudentMapper">
+	<select id="getCount" resultType="int">
+		select count(*) from student
+		<where>
+			<if test="sname !=null and sname !=''">
+				and sname like concat("%",#{sname},"%")
+			</if>
+			<if test="grade!=null">
+				<if test="grade.gid!=0">
+					and gid=#{grade.gid}
+				</if>
+			</if>
+		</where>
+
+	</select>
+
+	<select id="getStudentList" resultMap="getStudentInfo">
+		select * from
+		student s left join grade g
+		on s.sid=g.gid
+		left join stu_cou scu
+		on s.sid=scu.sid
+		left join course c
+		on
+		c.cid=scu.cid
+		<where>
+			<if test="student.sname !=null and student.sname !=''">
+				and s.sname like concat("%",#{student.sname},"%")
+			</if>
+			<if test="student.grade!=null">
+				<if test="student.grade.gid!=0">
+					and g.gid=#{student.grade.gid}
+				</if>
+			</if>
+
+
+		</where>
+		limit #{pageUtil.onsetPage},#{pageUtil.pageSize}
+	</select>
+	<resultMap type="student" id="getStudentInfo"
+		autoMapping="true">
+		<id column="sid" property="sid" />
+		<association property="grade" javaType="grade"
+			autoMapping="true"></association>
+
+		<collection property="courseList" ofType="course"
+			autoMapping="true"></collection>
+	</resultMap>
+	<!--嵌套查询 -->
+	<select id="getStudentList2" resultMap="getStudentInfo2">
+		select * from student s left join grade g on s.sid=g.gid
+		<where>
+			<if test="student.sname != null and student.sname !=''">
+				and s.sname like concat("%",#{student.sname},"%")
+			</if>
+			<if test="student.grade != null">
+				<if test="student.grade.gid != 0">
+					and g.gid=#{student.grade.gid}
+				</if>
+			</if>
+		</where>
+		limit #{pageUtil.onsetPage},#{pageUtil.pageSize}
+	</select>
+
+	<resultMap type="student" id="getStudentInfo2"
+		autoMapping="true">
+		<id column="sid" property="sid" />
+		<association property="grade" javaType="grade"
+			autoMapping="true"></association>
+
+		<collection property="courseList" ofType="course"
+			column="sid" select="getCourseList" autoMapping="true"></collection>
+	</resultMap>
+
+	<select id="getCourseList" resultType="course">
+		select * from stu_cou sc left join course c on sc.cid = c.cid where sc.sid=#{sid}
+	</select>
+	<!-- useGeneratedKeys="true" keyProperty="sid" -->
+	<insert id="addStudent" useGeneratedKeys="true"
+		keyProperty="sid">
+		insert into student (sname,sex,birthday,hobby,gid) values
+		(#{sname},#{sex},#{birthday},#{hobby},#{gid})
+	</insert>
+	<!--批量插入 -->
+	<insert id="addStuCou">
+		insert into stu_cou (sid,cid) values
+		<foreach collection="list" item="sc" separator=",">
+			(#{sc.sid},#{sc.cid})
+		</foreach>
+	</insert>
+	<!--根据学生id查询学生信息  -->
+	<select id="">
+	
+	
+	</select>
+</mapper>

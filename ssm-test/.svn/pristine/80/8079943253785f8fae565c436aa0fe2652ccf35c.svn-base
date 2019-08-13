@@ -1,0 +1,33 @@
+package com.bw.controller;
+
+import com.bw.pojo.User;
+import com.bw.server.UserServer;
+
+public class UserController implements UserServer {
+
+	@Override
+	public void add(User user) {
+		// TODO Auto-generated method stub
+		System.out.println("添加成功");
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(User user) {
+		// TODO Auto-generated method stub
+		System.out.println("崔志鹏是智障");
+		
+	}
+
+	@Override
+	public User select(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

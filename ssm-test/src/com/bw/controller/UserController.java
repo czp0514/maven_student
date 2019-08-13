@@ -1,0 +1,38 @@
+package com.bw.controller;
+
+import com.bw.maven.CCTV1;
+import com.bw.pojo.User;
+import com.bw.server.UserServer;
+
+public class UserController implements UserServer {
+
+	@Override
+	public void add(User user) {
+		// TODO Auto-generated method stub
+		System.out.println("添加成功");
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		System.out.println("111111");
+		CCTV1 cctv1 = new CCTV1();
+		cctv1.helloCCTV1();
+		
+	}
+
+	@Override
+	public void update(User user) {
+		// TODO Auto-generated method stub
+		System.out.println("崔志鹏是智障");
+		
+	}
+
+	@Override
+	public User select(int id) {
+		// TODO Auto-generated method stub
+		System.out.println("....");
+		return null;
+	}
+
+}

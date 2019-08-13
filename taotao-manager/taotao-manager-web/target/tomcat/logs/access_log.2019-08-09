@@ -1,0 +1,3 @@
+0:0:0:0:0:0:0:1 - - [09/Aug/2019:16:50:08 +0800] "GET /login.jsp HTTP/1.1" 200 500 http-bio-8080-exec-2 1468
+0:0:0:0:0:0:0:1 - - [09/Aug/2019:16:50:18 +0800] "POST /login.action HTTP/1.1" 302 - http-bio-8080-exec-3 3416
+0:0:0:0:0:0:0:1 - - [09/Aug/2019:16:50:19 +0800] "GET /GetStudentList.action HTTP/1.1" 200 1313 http-bio-8080-exec-4 584

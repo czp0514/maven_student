@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--1.加载外部资源文件（优先级高）  2.直接使用xml配置-->
+	<properties resource="database.properties"></properties>
+	<!--2.全局属性的设置  -->
+	<settings>
+		<!--1.NONE：禁止自动映射  2.PARTIAL(不包含嵌套结果的查询) 3.FULL（完全映射）-->
+		<setting name="autoMappingBehavior" value="FULL"/>
+		<!--默认不支持懒加载false  -->
+		<setting name="lazyLoadingEnabled" value="true"/>
+	</settings>
+	<!--3.给实体类取别名  -->
+	<typeAliases>
+		<package name="com.bw.pojo"/>
+	</typeAliases>
+	<!--4.配置数据库的连接信息 -->
+	<environments default="test1">
+		<environment id="test1">
+			<!--配置事务的管理 事务的管理类型有两种：1.JDBC，2.MANAGED 托管 -->
+			<transactionManager type="JDBC"></transactionManager>
+			<!--配置数据源的信息 数据源的类型有三种：1.POOLED 2.UNPOOLED 3.JNDI -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!--5.引入sql映射文件 -->
+	<mappers>
+		<package name="com.bw.mapper"/>
+	</mappers>
+</configuration>

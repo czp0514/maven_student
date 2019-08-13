@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.mapper.StudentMapper">
+	<resultMap type="student" id="studentResultMap" autoMapping="true">
+		<id column="sid" property="sid"/>
+		<association property="grade" javaType="grade" autoMapping="true"></association>
+	</resultMap>
+	
+	
+	<select id="findStudent" resultMap="studentResultMap">
+		select s.sid,s.sname,s.sex,s.hobby,s.birthday,g.gname,c.cname from student s,course c,grade g,stu_cou sc where s.gid=g.gid and s.sid=sc.sid and c.cid=sc.cid
+	</select>
+	<select id="findByPage" parameterType="int" resultMap="studentResultMap">
+		select s.sid,s.sname,s.sex,s.hobby,s.birthday,g.gname,c.cname from student s,course c,grade g,stu_cou sc where s.gid=g.gid and s.sid=sc.sid and c.cid=sc.cid ORDER BY s.sid limit #{index},2
+	</select>
+	
+	<select id="pageCount" resultType="int">
+       select count(*) from student s,course c,grade g,stu_cou sc where s.gid=g.gid and s.sid=sc.sid and c.cid=sc.cid	</select>
+</mapper>
