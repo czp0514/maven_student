@@ -6,7 +6,7 @@
   <packaging>war</packaging>
   <properties>
 		<spring.version>5.0.2.RELEASE</spring.version>
-		<mybatis.version>3.4.5</mybatis.version>
+		<mybatis.version>3.5.6</mybatis.version>
 	</properties>
 
 	<dependencies>
