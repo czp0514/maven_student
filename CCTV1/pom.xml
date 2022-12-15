@@ -12,7 +12,7 @@
     	 <dependency>
 	    	<groupId>org.springframework</groupId>
 	    	<artifactId>spring-webmvc</artifactId>
-	    	<version>5.0.2.RELEASE</version>
+	    	<version>5.2.20.RELEASE</version>
 	    	<!--不向下依赖  -->
 	    	<!-- <optional>true</optional> -->
     	</dependency>
